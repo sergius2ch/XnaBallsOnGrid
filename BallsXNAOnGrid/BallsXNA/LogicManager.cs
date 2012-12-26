@@ -347,11 +347,15 @@ namespace BallsXNA
 
         protected void CheckCollisions2Ball(int i, int j)
         {
-            float dx = (int)(balls[i].x - balls[j].x);
-            float dy = (int)(balls[i].y - balls[j].y);
+            float dx = (balls[i].x - balls[j].x);
+            float dy = (balls[i].y - balls[j].y);
             if (dx < Diameter && dy < Diameter)
             {
                 float distance = (float)(Math.Sqrt(dx * dx + dy * dy));
+                if (distance <0.01f)
+                {
+                    return;
+                }
                 if (distance < Diameter - 1)
                 {   // шарики столкнулись
                     // Честная физика столкновений:
